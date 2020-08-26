@@ -1,0 +1,15 @@
+.card-body{
+    margin-left: 30%;
+ }
+ .form-group{
+     width: 60%;
+ }
+ .card-header{
+     color: whitesmoke;
+ }
+ .alertMessage{
+     color: green;
+ }
+ span{
+     color: rgba(255, 102, 0, 0.884);
+ }

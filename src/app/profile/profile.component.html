@@ -1,0 +1,118 @@
+               <div class="card shadow p-3" style="margin-top: 80px;">
+                <div class="card-header bg-dark">
+                  <h4 data-aos="fade-right">Blogger's Profile</h4> 
+                </div>
+                <div class="card-body">
+                    <!-- insert blog form -->
+                    <form [formGroup]="blogForm" (ngSubmit)="onSubmit(blogForm.value)">
+                        <input type="hidden" formControlName="$key">
+                        <div class="form-group">
+                          <label for="blogs">Blog Title</label>
+                          <input class="form-control" id="blogs" formControlName="blog">
+                          <div *ngIf="blogForm.get('blog').touched && blogForm.get('blog').errors?.required">
+                            <span class="helper-text">Blog Title is required</span>
+                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="desc"></textarea>
+                            <div *ngIf="blogForm.get('desc').touched && blogForm.get('desc').errors?.required">
+                                <span class="helper-text">Description is required</span>
+                                 </div>
+                          </div>
+                          <div class="form-group">
+                           <img [src]="uploadImg" class="pointer shadow" alt="" width="250px" height="150" (click)="fileUploader.click()">
+                          </div>
+                          <div class="form-group">
+                           <label for="file">Select File</label>
+                           <input type="file" id="file" accept="image/*" class="form-control" (change)="showPreview($event)" #fileUploader  formControlName="imageUrl">
+                           <div *ngIf="blogForm.get('imageUrl').touched && blogForm.get('imageUrl').errors?.required">
+                            <span class="helper-text">Image is required</span>
+                             </div>
+                           </div>
+                        <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Submit" [disabled]="blogForm.invalid">
+                       </div>
+                      </form>
+               </div>
+        </div>
+       
+       
+            <!-- show blog -->
+            <div class="card p-3">
+                <div class="card-header bg-danger">
+                  <h4 data-aos="fade-right">Your blogs</h4>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>BlogId</th>
+                                <th>Images</th>
+                                <th>Blog Title</th>
+                                <th>Description</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of serviceArray; let i = index" data-aos="fade-up" data-aos-duration="2000">
+                                <th>{{i+1}}</th>
+                                <td width="20%"><img [src]="item.imageUrl" width="40%"></td>
+                                <th>{{item.blog}}</th>
+                                <td width="40%">{{item.desc}} <hr> </td>
+                                <td><button class="btn pen" data-toggle="modal" data-target="#exampleModal" (click)="updateData(item)">
+                                    <i class="fa fa-pencil"></i>
+                                  </button></td>
+                                <td><button class="btn" (click)="onDelete(item.$key)"><i class="fa fa-trash irr"></i></button></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+           
+            
+        <!-- update form modal -->
+        
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update your Blog</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <!-- update blog form -->
+           <form [formGroup]="blogForm" (ngSubmit)="onUpdate(blogForm.value)">
+            <input type="hidden" formControlName="$key">
+            <div class="form-group">
+              <label for="blogs">Blog Title</label>
+              <input class="form-control" id="blogs" formControlName="blog">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="desc"></textarea>
+              </div>
+              <div class="form-group">
+               <img [src]="uploadImg" class="pointer shadow" alt="" width="250px" height="150" (click)="fileUploader.click()">
+              </div>
+              <div class="form-group">
+                <label for="file">Select File</label>
+               <input type="file" id="file" accept="image/*" class="form-control" (change)="showPreview($event)" #fileUploader  formControlName="imageUrl">
+               </div>
+           <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Submit">
+           </div>
+          <div class="form-group" *ngIf="showMessage">
+            <div class="alertMess" data-aos="fade-up">{{alertMessage}}</div>
+          </div>
+          </form>
+        </div>
+       </div>
+    </div>
+  </div>
+
+    
+

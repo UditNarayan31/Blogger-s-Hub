@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card" style="margin-top: 80px;">
+        <div class="card-header bg-dark">
+          <h3 data-aos="fade-right">Blogger's Regiser Here</h3> 
+        </div>
+        <div class="card-body">
+            <!-- login-form -->
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+                <div class="form-group">
+                  <label for="userid">User ID</label>
+                  <input class="form-control" id="userid" formControlName="uid">
+                  <div *ngIf="registerForm.get('uid').touched && registerForm.get('uid').errors?.required">
+                    <span class="helper-text">Id is Required</span>
+                     </div>
+                 </div>
+                 <div class="form-group">
+                    <label for="name">Username</label>
+                    <input class="form-control" id="name" formControlName="uname">
+                    <div *ngIf="registerForm.get('uname').touched && registerForm.get('uname').errors?.required">
+                        <span class="helper-text">Name is Required</span>
+                         </div>
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" formControlName="pass">
+                  <div *ngIf="registerForm.get('pass').touched && registerForm.get('pass').errors?.required">
+                    <span class="helper-text">Password Needed</span>
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" id="date" formControlName="date">
+                    <div *ngIf="registerForm.get('date').touched && registerForm.get('date').errors?.required">
+                        <span class="helper-text">DOB is required</span>
+                         </div>
+              </div>
+                <input type="submit" class="btn btn-outline-success shadow" [disabled]="registerForm.invalid" value="Register">
+                <p *ngIf="alertBoolean" class="alertMessage mt-2">{{alertMessage}}</p>
+        </form>
+        </div>
+       </div>
+   </div>

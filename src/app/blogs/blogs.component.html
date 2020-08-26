@@ -1,0 +1,11 @@
+<div class="card shadow mb-2 p-2" style="margin-top: 80px;" *ngFor="let item of serviceArray">
+    <img [src]="item.imageUrl" alt="..." width="20%" data-aos="fade-zoom-in"
+    data-aos-easing="ease-in-back"
+    data-aos-delay="300"
+    data-aos-offset="0">
+    <div class="card-body">
+      <h5 class="card-title"data-aos="fade-right"  data-aos-duration="1000">{{item.blog}}</h5>
+      <p class="card-text" data-aos="fade-up"  data-aos-duration="1000">{{item.desc}}</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+.pen{
+    color: rgba(36, 128, 0, 0.808);
+}
+.irr{
+    color: rgba(255, 0, 0, 0.753);
+}
+.card-header{
+    color: whitesmoke;
+}
+.pointer{
+    cursor: pointer;
+}
+span{
+    color:rgba(255, 94, 0, 0.815);
+}
+.alertMess{
+    color: brown;
+}
